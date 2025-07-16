@@ -5,5 +5,4 @@ class paymenthandler{
         system.debug('pmt id is not null');
     }
    }
-
 }
