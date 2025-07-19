@@ -1,0 +1,5 @@
+<apex:page standardController="Flow_Child_MD__c" recordSetVar="FlowChildMDs">
+    <h1>
+        this is a vf page
+    </h1>
+</apex:page>

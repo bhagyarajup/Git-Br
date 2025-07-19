@@ -1,0 +1,31 @@
+<aura:component controller="picklistobjCall" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
+    <aura:attribute name="options" type="List" access="PRIVATE"/>
+    <aura:attribute name="userList" type="List" />
+      <aura:attribute name="loaded" type="Boolean" default="false" />
+     <!-- attributes -->
+    <aura:attribute name="data" type="Object"/>
+    <aura:attribute name="columns" type="List"/>
+    
+    <lightning:card title="Picklist check">
+        
+    <lightning:select name="PageNumbers" label="Page" aura:id="colorId" onchange="{!c.onChange }">
+        <aura:iteration items="{!v.options}" var="option">
+            <option text="{!option.label}" value="{!option.id}" />
+        </aura:iteration>
+    </lightning:select>
+    <aura:if isTrue="{! v.loaded }">
+            
+                <lightning:spinner alternativeText="Loading" />
+                    </aura:if>
+        
+    <!-- the container element determine the height of the datatable -->
+    <div style="height: 300px">
+        <lightning:datatable
+                keyField="id"
+                data="{! v.data }"
+                columns="{! v.columns }"
+                hideCheckboxColumn="true"/>
+    </div>
+    </lightning:card>
+</aura:component>

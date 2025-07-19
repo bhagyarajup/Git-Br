@@ -1,0 +1,15 @@
+<template>
+    <div class="record-list-container">
+        <ul class="record-list">
+            <template for:each={records} for:item="record">
+                <li key={record.Id} class="record-item">
+                    {record.Name}
+                </li>
+            </template>
+        </ul>
+
+        <template if:true={isLoading}>
+            <div class="loading">Loading more records...</div>
+        </template>
+    </div>
+</template>

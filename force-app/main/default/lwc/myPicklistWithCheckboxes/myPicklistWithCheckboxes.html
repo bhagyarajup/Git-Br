@@ -1,0 +1,16 @@
+<template>
+    <lightning-combobox label="Select Options"
+                        value={selectedOptions}
+                        options={options}
+                        onchange={handleOptionChange}
+                        multiple>
+        <template for:each={selectedOptions} for:item="option">
+            <span key={option} class="slds-pill slds-pill_link">
+                <span class="slds-pill__label">{option}</span>
+                <lightning-icon icon-name="utility:close"
+                                 size="x-small"
+                                 onclick={handleOptionRemove}></lightning-icon>
+            </span>
+        </template>
+    </lightning-combobox>
+</template>

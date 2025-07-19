@@ -1,0 +1,12 @@
+<template>
+    <lightning-card title="Account Records are ">
+        {AccountRecords}
+            <template for:each={AccountRecords} for:item="acc">
+                <li key={acc.Id}>
+                   name :  acc.Name;
+                </li>
+            </template>
+       
+
+    </lightning-card>
+</template>

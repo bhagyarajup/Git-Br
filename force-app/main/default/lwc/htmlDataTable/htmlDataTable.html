@@ -1,0 +1,32 @@
+<template>
+    <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+        <thead>
+            <tr>
+                <th scope="col" style="width: 5px;">
+                    <div class="slds-truncate" title="Name">Name</div>
+                </th>
+                <th scope="col" style="width: 5px;">
+                    <div class="slds-truncate" title="Age">Age</div>
+                </th>
+                <th scope="col" style="width: 30px;">
+                    <div class="slds-truncate" title="Description">Description</div>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <template for:each={data} for:item="row">
+                <tr key={row.id}>
+                    <td>
+                        <div class="slds-truncate" title={row.name}>{row.name}</div>
+                    </td>
+                    <td>
+                        <div class="slds-truncate" title={row.age}>{row.age}</div>
+                    </td>
+                    <td>
+                        <div class="slds-wrap" title={row.Description}>{row.Description}</div>
+                    </td>
+                </tr>
+            </template>
+        </tbody>
+    </table>
+</template>

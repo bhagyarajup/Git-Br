@@ -1,0 +1,12 @@
+<template>
+    <div class="scroll-Container" onscroll={handleScroll}>
+        <template for:each={accounts} for:item="account">
+            <div key={account.Id} class="record">{account.Name} - {account.Industry}</div>
+        </template>
+
+        <template if:true={isLoading}>
+            <p class="loading">Loading...</p>
+        </template>
+    </div>    
+    Page number : {pageNumber}
+</template>

@@ -1,0 +1,14 @@
+<apex:page >
+    <h1>
+        This is a VF page
+    </h1>
+    <apex:includeLightning />
+    <div id ="lwcCmpContainer"/>
+    <script>
+    $Lightning.use("c:AppForVFv",function(){
+        $Lightning.createComponent("c:accountDataTable",{},"lwcCmpContainer",function(cmp){
+        console.log("Lightning Web Component created Successfully!!");
+        });
+    });
+    </script>
+</apex:page>

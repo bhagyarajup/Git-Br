@@ -1,0 +1,6 @@
+.button-grid {
+    display: grid;
+    grid-template-columns: repeat(5, auto);  /* 5 buttons per row */
+    gap: 0.5rem;
+    justify-content: center;
+}

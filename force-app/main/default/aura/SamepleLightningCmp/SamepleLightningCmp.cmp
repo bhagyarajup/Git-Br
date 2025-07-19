@@ -1,0 +1,22 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global" >
+    <aura:attribute name="FirstVal1" type="integer"/>
+    <aura:attribute name="SecondVal1" type="integer"/>
+    <aura:attribute name="Output" type="integer" default="10"/>
+    <lightning:card Title="sampleCal new">
+        <lightning:layout>
+            <lightning:layoutItem size="4" padding="around-small">
+        <lightning:input  value="{!v.FirstVal}" label="First Val"/>
+            </lightning:layoutItem>
+            <lightning:layoutItem size="4" padding="around-small">
+        <lightning:input value="{!v.SecondVal}" label="Second Val"/>
+            </lightning:layoutItem>
+            <lightning:layoutItem size="6" padding="around-small">
+             {!v.Output}
+            </lightning:layoutItem>
+             </lightning:layout>
+        <lightning:button label="sumbit" variant="brand" onclick="{!c.Calculation}"/>
+            
+       
+           
+    </lightning:card>
+</aura:component>

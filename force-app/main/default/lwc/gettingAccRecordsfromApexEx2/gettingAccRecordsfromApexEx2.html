@@ -1,0 +1,11 @@
+<template>
+    <lightning-card title="Accounts">
+        <lightning-input label="enter number of records" onchange={NumberOfrecords}></lightning-input>
+        <lightning-button label="Submit" onclick={gettingAcc}></lightning-button>
+        <template if:true={getAccRecrods}>
+            <template for:each={Accounts} for:item="acc">
+                <li key={acc.Id}> {acc.Name}</li>
+            </template>
+        </template>
+    </lightning-card>
+</template>

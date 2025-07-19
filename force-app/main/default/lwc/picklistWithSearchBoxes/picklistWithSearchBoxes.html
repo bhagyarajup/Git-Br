@@ -1,0 +1,11 @@
+<template>
+   <div class="dropdown">
+       <input type="text" oninput={handleSearchChange} placeholder="Search..."/>
+       <select multiple size="5" onchange={handleSelectChange}>
+        <template for:each={options} for:item="option">
+            <option key={option.value} value={option.value} data-label={option.label} data-checked={option.checked}></option>
+        </template>
+
+       </select>
+   </div> 
+</template>

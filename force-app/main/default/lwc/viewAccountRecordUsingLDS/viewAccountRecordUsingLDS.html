@@ -1,0 +1,21 @@
+<template>
+    <lightning-card title="Create and view Account record">
+        <lightning-layout multiple-rows>
+            <lightning-layout-item size="6">
+                <lightning-input label="Enter Account name" onchange={getAccountName}></lightning-input>
+                <lightning-input label="Enter Account phone" onchange={getAccountPhone}></lightning-input>
+            </lightning-layout-item>
+            <lightning-layout-item size="6">
+                <template if:true={recordCreated}>
+                <lightning-card title="View data">
+                    <p><lightning-formatted-text value={retriveAccName}></lightning-formatted-text></p>
+                    <p><lightning-formatted-phone value={retriveAccPhone}></lightning-formatted-phone></p>
+                </lightning-card>
+            </template>
+            </lightning-layout-item>
+            <lightning-layout-item size="6">
+                <lightning-button label="Save" onclick={saverecord}></lightning-button>
+            </lightning-layout-item>
+        </lightning-layout>
+    </lightning-card>
+</template>

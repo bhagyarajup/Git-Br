@@ -1,0 +1,5 @@
+<design:component label="Data table cmp"><!-- this label we can see on flow builder-->
+	<design:attribute name="RecordId" label="RecordId"/>
+    <design:attribute name="selectedRowsCount" label="selectedRowsCount"/>
+    <design:attribute name="maxRowSelection" label="maxRowSelection"/>
+</design:component>

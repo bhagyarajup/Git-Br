@@ -1,0 +1,47 @@
+<template>
+    <lightning-card title="Calculator">
+    <lightning-layout multiple-rows>
+        <lightning-layout-item size="12">
+    <lightning-input label="Enter first value" type="number" onchange={firstVal}></lightning-input>
+</lightning-layout-item>
+ <lightning-layout-item size="12">
+    <lightning-input label="Enter second value" type="number" onchange={secondVal}></lightning-input>
+ </lightning-layout-item>
+ <lightning-layout-item size="12">
+    <lightning-button-group>
+        <lightning-button label="sum" icon-name="utility:add" icon-position="right" onclick={sumbutton} ></lightning-button>
+        <lightning-button label="substract" icon-name="utility:dash" icon-position="right" onclick={subbutton}></lightning-button>
+        <lightning-button label="multi" icon-name="utility:close" icon-position="right" onclick={mulbutton}></lightning-button>
+        <lightning-button label="div" icon-name="utility:magicwand" icon-position="right" onclick={divbutton}></lightning-button>
+    </lightning-button-group>
+    </lightning-layout-item>
+    <lightning-layout-item size="12" class="potato slds-box">
+    <p><b> Output : </b></p>
+    <p style="color:rgb(18, 20, 1);background:rgb(108, 108, 247)"> {var3} </p>
+</lightning-layout-item>
+<lightning-layout-item size="6" >
+    <lightning-input label="show calculator history" type="checkbox" onchange={checkbox1}></lightning-input>  
+</lightning-layout-item>
+<lightning-layout-item size="6" >
+    <lightning-radio-group name="radioGroup"
+    label="Calculator History"
+    options={options}
+    value={value}
+    onchange={radiochange}
+    type="radio"></lightning-radio-group> 
+   <!-- <lightning-input label="clear history" type="radio" onchange={checkbox2}></lightning-input>  
+   -->
+</lightning-layout-item>
+<lightning-layout size="12">
+    <template if:true={var6} >
+        <div style="color:yellow;background:black" class="potato slds-box">
+        <template iterator:it={var5}>
+            <p key={it.value}>{it.value}</p>
+        </template>
+    </div>
+    </template>
+</lightning-layout>
+
+</lightning-layout>
+</lightning-card>
+</template>

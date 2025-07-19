@@ -1,0 +1,14 @@
+<template>
+  <lightning-card title="A to Z">
+      <div class="button-grid">
+          <template for:each={buttons} for:item="button">   
+              <lightning-button 
+                  key={button.name}
+                  label={button.name} 
+                  variant={button.bVariant}
+                  onclick={handleClick}>
+              </lightning-button>
+          </template>
+      </div>
+  </lightning-card>
+</template>

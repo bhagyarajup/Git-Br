@@ -1,0 +1,8 @@
+<template>
+    <lightning-card title="for iterator">
+        <p> abc </p>
+        <template iterator:it={var1} >
+            <p key={it.value}>{it.value}</p>
+        </template> 
+    </lightning-card>
+</template>

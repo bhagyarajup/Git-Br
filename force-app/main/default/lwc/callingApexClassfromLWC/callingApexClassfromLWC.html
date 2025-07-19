@@ -1,0 +1,19 @@
+<template>
+   <lightning-card title="all acconts">
+        <template if:true={responseRecieved}>
+
+        <template for:each={accounts.data} for:item="account">
+            <li key={account.Id}>
+            <div class="slds-p-around_medium lgc-bg">
+           
+                <lightning-tile label={account.Name} type="media">
+                    <lightning-icon slot="media" icon-name="standard:account"></lightning-icon>
+                    <p class="slds-truncate" title={account.Phone}>7 membors</p>
+                </lightning-tile>
+                
+                </div>
+            </li>
+        </template>
+        </template>
+   </lightning-card> 
+</template>

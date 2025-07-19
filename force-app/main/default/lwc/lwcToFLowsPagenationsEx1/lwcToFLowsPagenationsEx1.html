@@ -1,0 +1,18 @@
+<template>
+    <lightning-card title="Contact Records ">
+      <lightning-input label="AccountId" onchange={getAccountId}></lightning-input>
+      <lightning-input label="recordLimit" onchange={getRecordLimit}></lightning-input>
+      <lightning-button label="Submit" onclick={gettingContactRecords}></lightning-button>
+   <template if:true={getcontactlist}>
+    <div> Inside if true </div>
+    <template for:each={cntLst} for:item="acc">
+        <li key={acc.Id}>
+            AccountName : {acc.Name}
+            Phone : {acc.Phone}   
+        ==============================      
+        </li>
+    
+  </template>
+</template>
+</lightning-card>
+</template>

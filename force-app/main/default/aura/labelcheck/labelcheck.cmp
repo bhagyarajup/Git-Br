@@ -1,0 +1,10 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" >
+
+    <aura:attribute name="homePageNews" type="String" />
+    <lightning:card title="{!$Label.c.abc}">
+        <p>
+            <lightning:button variant="brand" label="{!$Label.c.Button_Label}" onclick="{!c.newCaseAction}"/>
+        </p>
+        <p>{!v.homePageNews}</p>
+    </lightning:card>
+</aura:component>

@@ -1,0 +1,14 @@
+<template>
+    <lightning-card title="Record Form Compact layout full">
+    <lightning-record-form
+     record-id={recordId}
+      object-api-name="Contact"
+      fields={fields}
+      mode="edit"
+      columns="2"
+      onsuccess={getRecordId}
+    >
+    </lightning-record-form>
+</lightning-card>
+    
+</template>

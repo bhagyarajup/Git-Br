@@ -1,0 +1,21 @@
+<template>
+    <lightning-card title="LWC Pagelayout for Account record creation">
+        <lightning-layout multiple-rows>
+            <lightning-layout-item size="6" >
+                <lightning-input label="Account Name" onchange={accountName}></lightning-input>
+            </lightning-layout-item>
+            <lightning-layout-item size="6" >
+                <lightning-input label="Phone Number" onchange={PhoneNumber}></lightning-input>
+            </lightning-layout-item>
+            <lightning-layout-item size="6" >
+                <lightning-input type="checkbox" label="isPartner" onchange={isPartnerField}></lightning-input>
+            </lightning-layout-item>
+            <lightning-layout-item size="6" >
+
+            </lightning-layout-item>
+            <lightning-layout-item size="6" >
+                <lightning-button label="save" onclick={createrecord}></lightning-button>
+            </lightning-layout-item>
+        </lightning-layout>
+    </lightning-card>
+</template>

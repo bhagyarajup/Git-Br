@@ -1,0 +1,5 @@
+<apex:page >
+    
+    Record Id from LWC is {!$CurrentPage.parameters.recId}
+    
+</apex:page>

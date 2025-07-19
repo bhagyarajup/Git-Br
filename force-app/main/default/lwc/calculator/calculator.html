@@ -1,0 +1,23 @@
+<template>
+    <div class="calculator">
+        <div class="display">{currentValue}</div>
+        <div class="buttons">
+            <button class="button" onclick={handleButtonClick}>7</button>
+            <button class="button" onclick={handleButtonClick}>8</button>
+            <button class="button" onclick={handleButtonClick}>9</button>
+            <button class="button function" onclick={handleButtonClick}>/</button>
+            <button class="button" onclick={handleButtonClick}>4</button>
+            <button class="button" onclick={handleButtonClick}>5</button>
+            <button class="button" onclick={handleButtonClick}>6</button>
+            <button class="button function" onclick={handleButtonClick}>*</button>
+            <button class="button" onclick={handleButtonClick}>1</button>
+            <button class="button" onclick={handleButtonClick}>2</button>
+            <button class="button" onclick={handleButtonClick}>3</button>
+            <button class="button function" onclick={handleButtonClick}>-</button>
+            <button class="button" onclick={handleButtonClick}>0</button>
+            <button class="button" onclick={handleButtonClick}>.</button>
+            <button class="button equals" onclick={handleButtonClick}>=</button>
+            <button class="button function" onclick={handleButtonClick}>+</button>
+        </div>
+    </div>
+</template>

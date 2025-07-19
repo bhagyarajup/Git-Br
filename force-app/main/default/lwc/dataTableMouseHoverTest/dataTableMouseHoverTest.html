@@ -1,0 +1,15 @@
+<template>
+    <lightning-datatable
+        key-field="id"
+        data={data}
+        columns={columns}
+        hide-checkbox-column
+        onmouseover={handleMouseOver}
+        onmouseout={handleMouseOut}>
+    </lightning-datatable>
+
+    <!-- Tooltip div that displays the full text -->
+    <div if:true={showTooltip} class="tooltip" style={tooltipStyle}>
+        {tooltipText}
+    </div>
+</template>

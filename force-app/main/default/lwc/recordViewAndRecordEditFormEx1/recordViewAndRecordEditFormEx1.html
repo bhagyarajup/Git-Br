@@ -1,0 +1,25 @@
+<template>
+    <lightning-card title="Account Manager">
+        <lightning-layout multiple-rows>
+            <lightning-layout-item size="6">
+            <lightning-card title="Record Edit Form">
+             <lightning-record-edit-form object-api-name="Account" onsuccess={successHandler}>
+                <lightning-input-field field-name="Name"></lightning-input-field>
+                <lightning-input-field field-name="Phone"></lightning-input-field>
+                <lightning-button type="submit" label="save" ></lightning-button>
+        </lightning-record-edit-form>
+         </lightning-card>
+    </lightning-layout-item>
+    <lightning-layout-item size="6">
+        <lightning-card title="Record View form">
+            <div class="slds-box">
+            <lightning-record-view-form object-api-name="Account" record-id={recordId}>
+                <lightning-output-field field-name="Name"></lightning-output-field>
+                <lightning-output-field field-name="Phone"></lightning-output-field>
+            </lightning-record-view-form>
+        </div>
+        </lightning-card>
+    </lightning-layout-item>
+    </lightning-layout>
+    </lightning-card>
+</template>

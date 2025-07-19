@@ -1,0 +1,19 @@
+.scroll-Container {
+    max-height: 200px;
+    overflow: auto;
+    position: relative;
+    border: 1px solid black;
+}
+.scrollArea {
+    position: relative;
+}
+
+.record {
+    padding: 5px;
+    border-bottom: 1px solid #eee;
+}
+
+.loading {
+    text-align: center;
+    font-weight: bold;
+}

@@ -1,0 +1,24 @@
+/*.slds-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.slds-table th, .slds-table td {
+    padding: 8px;
+    text-align: left;
+}
+
+.slds-truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+} */
+.slds-wrap {
+    display: -webkit-box; /* Flexbox-based layout for text */
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2; /* Limit to 2 lines */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Show ellipsis after 2 lines */
+    white-space: normal; /* Ensure text can wrap */
+    word-wrap: break-word; /* Ensure long words wrap */
+}

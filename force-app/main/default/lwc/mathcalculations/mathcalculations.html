@@ -1,0 +1,19 @@
+<template>
+    <lightning-card title="Math Calculations">
+    <lightning-layout multiple-rows>
+        <lightning-layout-item size="12">
+            <lightning-input label="Enter A value" name="Aval" type="number" onchange={inputValue}></lightning-input>
+        </lightning-layout-item>
+        <lightning-layout-item size="12">
+            <lightning-input label="Enter B value" name="Bval" type="number" onchange={inputValue}></lightning-input>
+        </lightning-layout-item>
+        <lightning-layout-item size="12">
+            <lightning-button label="Submit" onclick={SumtwoVar}></lightning-button>
+        </lightning-layout-item>
+        <lightning-layout-item size="12">
+            <p>Sum of above two values are : {cVal} </p>
+        </lightning-layout-item>
+    </lightning-layout>
+
+    </lightning-card>
+</template>

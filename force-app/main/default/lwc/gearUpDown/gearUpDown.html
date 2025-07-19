@@ -1,0 +1,7 @@
+<template>
+   <h1> Current Gear : {currentGear}</h1> 
+   <lightning-button-group>
+   <lightning-button-icon icon-name="utility:down" variant="Brand" disabled={downDisabled}   alternative-text="Gear Down" class="slds-m-left_xx-small" title="Down" onclick={handleClick} ></lightning-button-icon>
+   <lightning-button-icon icon-name="utility:up"  variant="Brand"  disabled={upDisabled}   alternative-text="Gear Up" class="slds-m-left_xx-small" title="Up" onclick={handleClick} ></lightning-button-icon>
+</lightning-button-group>
+</template>

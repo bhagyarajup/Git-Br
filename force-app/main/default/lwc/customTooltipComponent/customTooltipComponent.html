@@ -1,0 +1,9 @@
+<template>
+    <h1>change 4</h1>
+    <div class="description" 
+         onmouseover={showTooltip} 
+         onmouseout={hideTooltip}>
+        <p>Hover over this text to see the tooltip.</p>
+        <div if:true={showTooltipFlag} class="tooltip">This is a custom tooltip description.</div>
+    </div>
+</template>

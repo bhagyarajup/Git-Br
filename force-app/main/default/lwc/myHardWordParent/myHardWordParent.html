@@ -1,0 +1,22 @@
+<template>
+    <lightning-card title="Word Find">
+    <template if:true={isGo}>
+    <lightning-layout multiple-rows>
+    <lightning-layout-item flexibility="auto" size="5" padding="around-small">             
+    <lightning-input label="Enter Your Id" type="text" name="enterUserId" onchange={handleChange}></lightning-input>
+</lightning-layout-item>
+<lightning-layout-item flexibility="auto" size="5" padding="around-small">   
+    <lightning-input label="Number Of Attempts" type="number" name="numberOfAttempts" onchange={handleChange}></lightning-input>
+   </lightning-layout-item>
+    <lightning-layout-item flexibility="auto" size="2" padding="around-small">   
+    <lightning-button label="Go" onclick={getIntoGame} variant="Brand"></lightning-button>
+   </lightning-layout-item>
+</lightning-layout>
+</template>
+</lightning-card>
+<template if:true={isGame}>
+<c-my-hard-word number-of-attempts={enteredNoOfEttempts} user-rec-id={userId}>
+
+</c-my-hard-word>
+</template>
+</template>

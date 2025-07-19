@@ -1,0 +1,14 @@
+<template>
+    <lightning-card title="Render Component">
+        <div> outside the if </div>
+        <lightning-button label="submit" onclick={submitBotton}></lightning-button>
+       <lightning-input label="check" type="checkbox" onchange={checkboxfun}>
+       </lightning-input>
+        <template if:true={var1}>
+          <div>inside the if true</div>
+      </template>
+      <template if:false={var1}>
+        <div>inside the if false</div>
+    </template>
+    </lightning-card>
+</template>

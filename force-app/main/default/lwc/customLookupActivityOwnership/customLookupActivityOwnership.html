@@ -1,0 +1,321 @@
+<template>
+    <template if:false={hasPermission}>
+      <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-02" aria-modal="true" aria-describedby="modal-content-id-5" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+        
+           <header class="slds-modal__header">
+              <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={hideModalBox}>
+                 <lightning-icon icon-name="utility:close"
+                    alternative-text="close"
+                    variant="inverse"
+                    size="small" ></lightning-icon>
+                 <span class="slds-assistive-text">Close</span>
+              </button>
+              <h2 id="modal-heading-04" class="slds-text-heading_medium slds-hyphenate"></h2>
+           </header>
+           <div class="slds-modal__content slds-p-around_medium" >
+                 <p style="color:red">You do not have permission to Create/Edit Methods</p>
+           </div>
+           <template if:true={recordId}>
+             <footer class="slds-modal__footer">
+                <button class="slds-button slds-button_neutral" onclick={hideModalBoxonEdit}>Close</button>
+             </footer>
+           </template>
+        </div>
+     </section>
+     <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+    <template if:true={hasPermission}>
+      <div class="slds-box slds-p-top_small" style="background-color: white;">
+        <div if:true={showSpinner}>
+          <div class="backdrop">
+            <div class="spinner">
+              <lightning-spinner alternative-text="Loading..."></lightning-spinner>
+            </div>
+          </div>
+        </div>
+    
+        <div class="slds-m-bottom_medium">
+          <div
+            class="slds-text-heading_medium slds-m-bottom_medium slds-p-around_small slds-theme_default slds-align_absolute-center">
+            Add RASIC</div>
+          <lightning-record-edit-form object-api-name="Activity__c" onsuccess={handleSuccess} onsubmit={handleSubmit}
+            onerror={handleOnError}>
+            <lightning-messages></lightning-messages>
+            <div class="slds-grid">
+              <div class="slds-col slds-size_1-of-2">
+                <label for="activityName">New Activity Name</label>
+                <lightning-input-field id="activityName" field-name="Name" value={addedActivityName}
+                  variant="label-hidden" onchange={handleActivityAdded} required>
+                </lightning-input-field>
+    
+                <label for="description">Description</label>
+                <lightning-input-field id="description" field-name="Description__c" value={activityDescription}
+                  onchange={handleDescChange} variant="label-hidden" required>
+                </lightning-input-field>
+    
+                <label for="relatedMethod">Related Method</label>
+                <lightning-input-field id="relatedMethod" field-name="Related_Method__c" value={relatedMethodId}
+                  onchange={handleMethodChange} variant="label-hidden" >
+                </lightning-input-field>
+              </div>
+            </div>
+            <div class="slds-var-m-top_medium slds-align_absolute-center">
+              <lightning-button type="submit" variant="neutral" label="Add New Activity"
+                class="slds-m-right_small">
+              </lightning-button>
+              <!-- <lightning-button type="button" label="Choose Existing Activity" title="Choose Existing Activity"
+                onclick={handleSelectActivity}> 
+              </lightning-button>-->
+            </div>
+          </lightning-record-edit-form>
+        </div>
+    
+        <!--Select Existing Activity-->
+        <template if:true={showExistingActivityModal}>
+          <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-03"
+            class="slds-modal slds-fade-in-open slds-modal_small">
+            <div class="slds-modal__container">
+              <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close"
+                onclick={handleHideModal}>
+                <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse"
+                  size="small"></lightning-icon>
+                <span class="slds-assistive-text">Close</span>
+              </button>
+              <div class="slds-modal__header">
+                <h1 id="modal-heading-03" class="slds-modal__title slds-hyphenate">Choose Existing Activity</h1>
+              </div>
+              <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-3">
+                <lightning-record-edit-form object-api-name="Activity_Ownership__c" id="selectActivity">
+                  <div class="slds-grid slds-gutters slds-wrap">
+                    <div class="slds-col slds-size_1-of-2">
+                      <lightning-input-field field-name="Activity__c" value={selectedActivity}
+                        onchange={handleActivityChange} data-id="activityLookup" required>
+                      </lightning-input-field>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2">
+                      <lightning-input type="text" disabled="true" label="Related Method"
+                        data-id="related-method" value={relatedMethodName}> </lightning-input>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2"></div>
+                  </div>
+                </lightning-record-edit-form>
+              </div>
+              <div class="slds-modal__footer">
+                <button class="slds-button slds-button_neutral" aria-label="Cancel and close"
+                  onclick={handleHideModal}>Cancel</button>
+                <button class="slds-button slds-button_brand" onclick={handleSaveActivity}>Save & Add</button>
+              </div>
+            </div>
+      </div>
+      </section>
+      <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+       </template>
+    
+    
+    
+    <!--Activity Ownership Table-->
+        <div class="slds-grid slds-wrap slds-box" if:true={showActivityDiv}>
+          <div class="slds-col slds-size_1-of-1" style="max-height: 500px; overflow: scroll;">
+            <template if:true={showActivityData}>
+              <!-- <lightning-datatable key-field="Id" data={activityDisplayList} columns={activityColumns}
+                hide-checkbox-column="true"   onrowaction={callActivityAction}>
+              </lightning-datatable> -->
+    
+              <table aria-multiselectable="true" class="
+                slds-table slds-no-row-hover
+                slds-table_bordered" role="grid">
+                <thead>
+                  <tr class="slds-line-height_reset">
+                    <th></th>
+                    <th>Activity</th>
+                    <th>Related Method</th>
+                    <th>Order</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <template for:each={activityTableData} for:item="rec" for:index="index">
+                    <tr key={rec.Id} onchange={Change} draggable="true" ondrop={Drop} ondragstart={DragStart}
+                      ondragover={DragOver} ondragleave={DragLeave} data-row={index} class="draggable">
+                      <td role="gridcell" width="10%">
+                        <div class="slds-cell" data-row={index}>
+                          <lightning-button-icon icon-name={rec.buttonIcon} alternative-text={rec.buttonText}
+                            title={rec.buttonText} data-id={rec.Id} data-isexpanded={rec.isExpanded}
+                            data-index={index} onclick={callActivityAction}></lightning-button-icon>
+                           <lightning-button-icon class="slds-m-left_medium" icon-name="utility:add"
+                            alternative-text="Add Roles" title="Add Roles" data-id={rec.Id}
+                            data-index={index} onclick={handleAddRole}></lightning-button-icon> 
+                        </div>
+                      </td>
+                      <td role="gridcell" width="30%">
+                        <div class="slds-cell" data-row={index}>{rec.Name}</div>
+                      </td>
+                      <td role="gridcell" width="50%">
+                        <div class="slds-cell" data-row={index}>{rec.RelatedMethodName}</div>
+                      </td>
+                      <td role="gridcell" width="10%">
+                        <div class="slds-cell" data-row={index}>{rec.Order}</div>
+                      </td>
+                    </tr>
+                    <template if:true={rec.isExpanded} for:each={rec.roleTableData1} for:item="role"
+                      for:index="roleIndex">
+                      <tr class="custom-row" key={role.activityRoleId}>
+                        <template if:true={showRoleData}>
+                          <td role="gridcell" class="custom-cell"></td>
+                          <td role="gridcell" class="custom-cell">
+                            <div class="slds-cell">{role.RoleName}</div>
+                          </td>
+                          <td role="gridcell" class="custom-cell">
+                            <div class="slds-cell">{role.RasicValueString}</div>
+                          </td>
+                          <td role="gridcell" class="custom-cell">
+                            <div class="slds-cell">
+                              <lightning-button data-activity-role-id={role.activityRoleId}
+                                variant="brand-outline" label="Edit" title="Edit"
+                                onclick={callRoleAction} class="slds-m-left_x-small"
+                                icon-name="utility:edit">
+                              </lightning-button>
+                              <lightning-button data-activity-role-id={role.activityRoleId}
+                                variant="destructive" label="Delete" title="Delete"
+                                onclick={callRoleDeleteAction} class="slds-m-left_x-small"
+                                icon-name="utility:delete">
+                              </lightning-button>
+                            </div>
+                          </td>
+                        </template>
+                      </tr>
+                    </template>
+                  </template>
+                </tbody>
+          </table>
+    
+            </template>
+    
+            <!-- <template if:true={showActivityData2}>
+              <lightning-datatable key-field="Id" data={activityDisplayList2} columns={activityColumns2} hide-table-header={hideHeader}
+                hide-checkbox-column="true"  onrowaction={callActivityAction}>
+              </lightning-datatable>
+            </template>
+    
+            <div if:true={showRoleData} style="position: relative; left: 30px;">
+              <lightning-datatable key-field="activityRoleId" data={roleTableData} columns={roleColumns}
+                hide-checkbox-column="true" onrowaction={callRoleAction} hide-table-header="true">
+              </lightning-datatable>
+            </div>
+    
+            <template if:true={showActivityData3}>
+              <lightning-datatable key-field="Id" data={activityDisplayList3} columns={activityColumns} hide-table-header="true"
+                hide-checkbox-column="true"  onrowaction={callActivityAction}>
+              </lightning-datatable>
+            </template> -->
+          </div>
+    
+          
+        </div>
+    
+          <div class="slds-modal__footer">
+            <button class="slds-button slds-button_neutral" aria-label="Cancel and close"
+              onclick={closeQuickAction}>Cancel</button>
+            <button class="slds-button slds-button_brand" onclick={saveRecords}>Save</button>
+          </div>
+    
+        <template if:true={isShowEditModal}>
+          <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01"
+            class="slds-modal slds-fade-in-open slds-modal_small">
+            <div class="slds-modal__container">
+              <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close"
+                onclick={handleHideModal}>
+                <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse"
+                  size="small"></lightning-icon>
+                <span class="slds-assistive-text">Close</span>
+              </button>
+              <div class="slds-modal__header">
+                <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Edit RASIC</h1>
+              </div>
+              <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                <lightning-record-edit-form object-api-name="Activity_Ownership__c" id="editRasic">
+                  <div class="slds-grid slds-wrap">
+                    <div class="slds-col slds-size_1-of-2">
+                      <lightning-input-field field-name="Activity__c" value={selectedActivity}
+                        onchange={handleActivityChange} data-id="activityLookupEdit" disabled="true"> </lightning-input-field>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2">
+                      <lightning-input type="text" disabled="true" label="Related Method" data-id="related-method"
+                        value={relatedMethodName}> </lightning-input>
+                    </div>
+                    <div class="slds-col slds-size_1-of-1">
+                      <lightning-input-field field-name="Role__c" value={selectedRole} onchange={handleRoleChange}
+                        data-id="roleLookupEdit" required> </lightning-input-field>
+                    </div>
+                    <div class="slds-col slds-size_1-of-1">
+                        <lightning-select
+                            name="RASIC"
+                            label="Select RASIC"
+                            value={selectedRasicValue}
+                            options={rasicOptions}
+                            onchange={handleRasicChange}
+                            required >
+                        </lightning-select>
+    
+                    </div>
+    
+                  </div>
+    
+                </lightning-record-edit-form>
+              </div>
+              <div class="slds-modal__footer">
+                <button class="slds-button slds-button_neutral" aria-label="Cancel and close"
+                  onclick={handleHideModal}>Cancel</button>
+                <button class="slds-button slds-button_brand" onclick={handleEditRole}>Save</button>
+              </div>
+            </div>
+          </section>
+          <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+        </template>
+      </div>
+    
+      <!--Add Role -->
+    <template if:true={showAddRole}>
+      <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-02"
+        class="slds-modal slds-fade-in-open slds-modal_small">
+        <div class="slds-modal__container">
+          <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close"
+                onclick={handleHideModal}>
+                <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse"
+                  size="small"></lightning-icon>
+                <span class="slds-assistive-text">Close</span>
+              </button>
+          <div class="slds-modal__header">
+            <h1 id="modal-heading-02" class="slds-modal__title slds-hyphenate">Add Roles</h1>
+          </div>
+          <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-2">
+            <lightning-record-edit-form object-api-name="Activity_Ownership__c" id="addRole">
+              <template for:each={currentRoleDataList} for:item="record" for:index="index">
+                <div key={record.localId} class="slds-grid slds-gutters slds-wrap slds-p-bottom_x-small">
+                  <div class="slds-col slds-size_1-of-2">
+                    <lightning-input-field field-name="Role__c" value={record.selectedRole}
+                      onchange={handleRoleChange} data-id="roleLookupEdit" disabled={record.isDisabled} required>
+                    </lightning-input-field>
+                  </div>
+                  <div class="slds-col slds-size_1-of-2">
+                    <lightning-select name="RASIC" label="Select RASIC" value={record.selectedRasicValue}
+                      options={rasicOptions} onchange={handleRasicChange} disabled={record.isDisabled} required>
+                    </lightning-select>
+                  </div>
+                </div>
+              </template>
+            </lightning-record-edit-form>
+          </div>
+          <div class="slds-modal__footer">
+            <button class="slds-button slds-button_neutral" onclick={handleAddRoleCheck}>Add Row</button>
+            <button class="slds-button slds-button_brand" aria-label="Finish"
+                  onclick={handleSaveFinish}>Finish</button>
+            
+          </div>
+        </div>
+      </section>
+      <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+    </template>
+      
+  </template>
+  </template>

@@ -1,0 +1,7 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <lightning:navigation aura:id="navService"/>
+    <aura:handler name="init" value="{!this}" action="{!c.navigateToCaseClose}"/>
+    
+   <!-- <lightning:button label="Navigate to Case Close" onclick="{!c.navigateToCaseClose}"/>
+    -->
+</aura:component>

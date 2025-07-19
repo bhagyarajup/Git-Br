@@ -1,0 +1,29 @@
+<template>
+  <lightning-card>
+    <h1 ><b>Max Number Of Attempts : {numberOfAttempts} </b></h1>
+    <template if:true={attemptsReached}>
+     <h1 style="color:green">Word is : <b>{dictionaryWord}</b></h1>
+    </template>
+    <lightning-layout multiple-rows>
+   <lightning-layout-item size="2">
+ <lightning-input type="text" max-length="4" onchange={captureLetter}  disabled={buttonDisabled} value={wordUpper}></lightning-input>  
+ </lightning-layout-item>
+ <lightning-layout-item size="8"> 
+</lightning-layout-item>
+ <lightning-layout-item size="1">
+ <lightning-button
+ variant="brand"
+ label="Check"
+ disabled={buttonDisabled}
+ onclick={handleCheck}>
+</lightning-button>
+</lightning-layout-item>
+</lightning-layout>
+<lightning-datatable
+ columns={columns}
+ data={rows}
+ key-field="id"
+ hide-checkbox-column>
+</lightning-datatable>
+</lightning-card>
+</template>

@@ -1,0 +1,39 @@
+<template>  
+    <lightning-card>
+    <lightning-layout multiple-rows>
+    <lightning-layout-item size="1">
+    <lightning-input name="Input1" onchange={handleChange} max-length="1">  
+    </lightning-input>   
+    </lightning-layout-item>  
+    <lightning-layout-item size="1">
+    <lightning-input name="Input2" onchange={handleChange} max-length="1">    
+    </lightning-input> 
+     </lightning-layout-item>
+     <lightning-layout-item size="1">
+    <lightning-input name="Input3" onchange={handleChange} max-length="1">    
+    </lightning-input> 
+    </lightning-layout-item>
+    <lightning-layout-item size="1">
+    <lightning-input name="Input4" onchange={handleChange} max-length="1">    
+    </lightning-input> 
+    </lightning-layout-item>     
+   <lightning-layout-item size="1" style="background:green">  
+   <lightning-input disabled value={positionCorrect}>    
+   </lightning-input>
+</lightning-layout-item>
+<lightning-layout-item size="1" style="background:yellow">  
+    <lightning-input disabled value={letterCorrect} >    
+    </lightning-input>
+ </lightning-layout-item> 
+</lightning-layout> 
+   <lightning-layout-item size="1">
+   
+   <lightning-button
+        variant="brand"
+        label="Check"
+        onclick={handleCheck}
+    >
+    </lightning-button>
+   </lightning-layout-item>
+   </lightning-card>
+</template>
