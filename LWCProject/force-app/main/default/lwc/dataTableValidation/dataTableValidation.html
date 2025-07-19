@@ -1,0 +1,24 @@
+<template>
+     <div class="slds-m-bottom_small" style="display: flex;gap: 10em;">
+        <div>
+            <lightning-input type="toggle" label="Show Green Scores" name="showGreenScoresToggle" onchange={handleGreenShowScores}>
+            </lightning-input>
+        </div>
+    </div>   
+        <lightning-datatable
+            key-field="id"
+            data={contactData}
+            columns={columns}
+            hide-checkbox-column=false>
+        </lightning-datatable>
+    <template if:true={isGreenScores}>
+     <c-generic-datatable table-data={contactDataGreen} toggle-selection={toggleSelection} selected-green-toggle={isGreenScores}>
+        
+     </c-generic-datatable>
+     </template>
+    <template if:false={isGreenScores}>
+     <c-generic-datatable table-data={contactDataNonGreen} toggle-selection={toggleSelection} selected-green-toggle={isGreenScores}>
+        
+     </c-generic-datatable>
+     </template>
+</template>

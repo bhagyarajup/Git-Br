@@ -1,0 +1,10 @@
+<template>
+    <lightning-datatable
+        key-field="Id"
+        data={accounts}
+        columns={columns}
+        onloadmore={handleLoadMore}
+        enable-infinite-loading
+        is-loading={isLoading}>
+    </lightning-datatable>
+</template>

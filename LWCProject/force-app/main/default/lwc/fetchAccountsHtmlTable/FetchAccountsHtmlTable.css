@@ -1,0 +1,12 @@
+.scroll-container {
+    height: 400px;
+    overflow-y: scroll;
+}
+.record-card {
+    padding: 8px;
+    border-bottom: 1px solid #ccc;
+}
+.loader {
+    text-align: center;
+    padding: 10px;
+}

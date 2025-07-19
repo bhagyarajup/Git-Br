@@ -1,0 +1,12 @@
+<template>
+    <div class="scroll-container" onscroll={handleScroll}>
+        <template for:each={accounts} for:item="account">
+            <div key={account.Id} class="record-card">
+                {account.Name}
+            </div>
+        </template>
+        <template if:true={isLoading}>
+            <div class="loader">Loading...</div>
+        </template>
+    </div>
+</template>

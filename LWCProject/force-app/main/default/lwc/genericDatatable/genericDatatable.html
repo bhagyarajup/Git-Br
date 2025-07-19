@@ -1,0 +1,63 @@
+<template>
+    <article class="slds-card">
+            <header class="slds-card__header slds-grid">
+                <h2 class="slds-card__header-title slds-text-truncate" title={computedHeaderName}>
+                    <span class="slds-text-bold slds-m-left_small slds-m-top_medium">{computedHeaderName}</span>
+                </h2>
+                </header>
+      <div class="slds-scrollable">
+                <div class="slds-table_edit_container">
+                    <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                        <thead>
+                            <tr>
+                                <th class="slds-text-align_center" scope="col"
+                                    style="width: 4rem; padding: 0.5rem 0.25rem;">
+                                    <div class="slds-truncate" title="Select"></div>
+                                </th>
+                                <th class="slds-text-align_center" scope="col"
+                                    style="width: 18rem; padding: 0.5rem 0.25rem;">
+                                    <div class="slds-truncate" title="FirstName">First Name</div>
+                                </th>
+                                <th class="slds-text-align_center" scope="col"
+                                    style="width: 9rem; padding: 0.5rem 0.25rem;">
+                                    <div class="slds-truncate" title="LastName">Last Name</div>
+                                </th>
+                                <th class="slds-text-align_center" scope="col"
+                                    style="width: 9rem; padding: 0.5rem 0.25rem;">
+                                    <div class="slds-truncate" title="Rag">RAG</div>
+                                </th>
+                                <template if:true={showScores}>
+                                    <th class="slds-text-align_center" scope="col"
+                                        style="width: 9rem; padding: 0.5rem 0.25rem;">
+                                        <template if:true={displayColumn}>
+                                            <div class="slds-truncate" title="Score">Score</div>
+                                        </template>
+                                    </th>
+                                </template>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={tableData} for:item="row">
+                                <tr key={row.Id}>
+                                    <td class="slds-text-align_center" style="padding: 0.25rem 0.25rem;">
+                                        <input type="radio" name={headerName} value={row.Id} class="slds-radio"
+                                            disabled={row.radioDisabled} checked={row.isSelected}
+                                            onchange={handleRowSelection} />
+                                    </td>
+                                    <td class="slds-text-align_center" style="padding: 0.25rem 0.25rem;">
+                                        <div style="white-space: normal;" title={row.nameHelpText}>{row.FirstName}</div>
+                                    </td>
+                                    <td class="slds-text-align_center" style="padding: 0.25rem 0.25rem;">
+                                        <div style="white-space: normal;" title={row.nameHelpText}>{row.LastName}</div>
+                                    </td>  
+                                     <td class="slds-text-align_center" style="padding: 0.25rem 0.25rem;">
+                                        <div style="white-space: normal;" title={row.nameHelpText}>{row.RAG_status__c}</div>
+                                    </td>                                 
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </div>
+            </div>          
+    </article>
+</template>
